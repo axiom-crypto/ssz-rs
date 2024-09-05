@@ -7,6 +7,7 @@ use crate::{
         Node, Path,
     },
 };
+use serde::{Serialize, Deserialize};
 use sha2::{Digest, Sha256};
 
 /// Convenience type for a Merkle proof and the root of the Merkle tree, which serves as
@@ -169,7 +170,7 @@ pub trait Prove: GeneralizedIndexable {
 
 /// Contains data necessary to verify `leaf` was included under some witness "root" node
 /// at the generalized position `index`.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Proof {
     pub leaf: Node,
     pub branch: Vec<Node>,
